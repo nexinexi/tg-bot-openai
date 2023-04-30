@@ -1,0 +1,10 @@
+.idea
+.vscode
+
+.env*
+!.env.template
+
+voices/*
+!voices/temp
+
+node_modules
