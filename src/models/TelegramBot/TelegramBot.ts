@@ -5,21 +5,21 @@ import { SessionMiddleware } from './SessionMiddleware';
 
 class TelegramBot {
   private readonly bot: Telegraf<Context>;
-  
+
   constructor(private token: string) {
     const sessionMiddleware = new SessionMiddleware();
-    
+
     this.bot = new Telegraf(token);
-    this.bot.use(sessionMiddleware.register())
-    
+    this.bot.use(sessionMiddleware.register());
+
     const commandHandler = new CommandHandler(this.bot);
     const eventHandler = new EventHandler(this.bot);
-    
+
     commandHandler.registerCommands();
     eventHandler.registerEvents();
   }
-  
-  async start() {
+
+  public async start() {
     return this.bot.launch();
   }
 }

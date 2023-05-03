@@ -15,7 +15,7 @@ export class SessionMiddleware {
   private readonly sessions: SessionStorage;
 
   constructor() {
-    this.sessions = {}
+    this.sessions = {};
   }
 
   register() {
@@ -25,12 +25,12 @@ export class SessionMiddleware {
       if (!userId) {
         return next();
       }
-      
+
       (ctx as any).session = this.sessions[userId] || { messages: [] };
-  
+
       return next().then(() => {
         this.sessions[userId] = (ctx as any).session;
       });
-    }
+    };
   }
 }
